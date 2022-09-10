@@ -3,7 +3,7 @@ const tiles = [];
 
 let grid = [];
 
-const dimension = 10;
+let dimension = 10;
 
 const BLANK = 0;
 const UP = 1;
@@ -53,8 +53,10 @@ function preload() {
 }
 
 function setup() {
-    createCanvas(800,800);
-    
+    var canvas = createCanvas(600,600);
+    canvas.parent("maze");
+    //canvas.position((windowWidth - width) / 2, (windowHeight - height) / 2);
+
     for (let i = 0; i < dimension*dimension; i++) {
         grid[i] = {
             collapsed: false,
@@ -70,8 +72,16 @@ function checkValid(arr, valid) {
         }
     }
 }
-function mousePressed() {
-    redraw();
+function redoMaze() {
+    clear();
+    setup();
+    draw();
+}
+function redoMazeDim() {
+    dimension = Math.floor(Math.random() * 14 + 2);
+    clear();
+    setup();
+    draw();
 }
 function draw() {
     background(0);
@@ -179,4 +189,9 @@ function draw() {
     grid = nextGrid;
 
 }
+
+function save() {
+    saveCanvas('GeneratedMaze', 'jpg');
+}
+
 
