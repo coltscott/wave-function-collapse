@@ -50,3 +50,9 @@ input[type=button] {
       border: none;
   }
 
+@media (max-width: 480px) {
+    .pipe {
+        display: none;
+    }
+}
+
